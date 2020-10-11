@@ -42,9 +42,31 @@
             </div>
         </div>
 
+        <div id="add-form">
+            <div class="group-form">
+                <label for="">Telefone</label>
+                <button class="btn btn-add" type="button" id="add"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+
+
         <button type="submit" class="btn btn-success">Cadastrar</button>
         <?php if($this->view->erroCadastro) { ?>
             <small class="form-text text-danger">Erro ao realizar cadastro!</small>
         <?php } ?>
     </form>
 </div>
+
+<script>
+    var cont = 1;
+
+    $("#add").click(function() {
+        $("#add-form").append('<div class="group-form" id="campo'+cont+'"><input type="text" class="form-control col-md-4" id="fone" name="fone'+cont+'"><button class="btn btn-add apagar" type="button" id="'+ cont+ '"><i class="fas fa-minus"></i></button></div>');
+        cont++;
+    });
+
+    $("#add-form").on("click", ".apagar", function() {
+        var button_id = $(this).attr("id");
+        $('#campo' + button_id + '').remove();
+    });
+</script>

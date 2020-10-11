@@ -25,6 +25,7 @@ class IndexController extends Action {
     }
 
     public function registrar() {
+        
         $usuario = Container::getModel('User');
         $usuario->__set('nome', $_POST['nome']);
         $usuario->__set('email', $_POST['email']);
@@ -32,6 +33,11 @@ class IndexController extends Action {
         $usuario->__set('estado', $_POST['estado']);
         $usuario->__set('cep', $_POST['cep']);
 
+        for ($i = 5; $i < count($_POST); $i++) {
+            $j++;
+            $usuario->setTel($j, $_POST['fone' . $j]);
+        }
+        
         if ($usuario->validarRegistro() && count($usuario->getUserValid()) == 0) {
                 $usuario->salvar();
                 $this->render('registrar', 'layout1');
@@ -46,14 +52,18 @@ class IndexController extends Action {
             $this->view->erroCadastro = true;
             $this->render('cadastrar', 'layout1');
         }
+        
+    }
+
+    public function busca() {
+        $this->render('busca', 'layout1');
     }
 
     public function consulta() {
         $usuario = Container::getModel('User');
-        $this->view->user = $usuario->getUser();
-        echo '<pre>';
-        print_r($this->view->user);
-        echo '</pre>';
+        $this->view->user = $usuario->getUser($_POST['email']);
+        $this->view->tel = $usuario->getTel($this->view->user[0]['id_usuario']);
+
         $this->render('consulta', 'layout1');
     }
 }

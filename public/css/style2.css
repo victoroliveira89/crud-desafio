@@ -17,6 +17,12 @@ img {
     margin-right: auto
 }
 
+label {
+    display: block;
+    width: 100%;
+    margin-bottom: .5rem;
+}
+
 .container {
     background-color: rgb(228, 228, 228);
     margin-top: 3em;
@@ -38,4 +44,15 @@ img {
 .group {
     text-align: center;
     margin-top: 4em;
+}
+
+.btn-add {
+    border-radius: 50px;
+    margin-left: 1em;
+}
+
+.group-form {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
 }

@@ -3,18 +3,27 @@
 </head>
 
 <div class="container">
-    <h1>Victor Hugo Campos de Oliveira</h1>
+    <h1><?= $this->view->user[0]['nome'] ?></h1>
     <img src="/img/home.png/" alt="Foto Ilustrativa">
-    <div>
-        <label for="email">Email</label>
-        <h2 name="email">xxxxxxxxxxx@gmail.com</h2>
-        <label for="cidade">Cidade</label>
-        <h2 name="cidade">Brasília</h2>
-        <label for="estado">Estado</label>
-        <h2 name="estado">DF</h2>
-        <label for="cep">CEP</label>
-        <h2 name="cep">71710-560</h2>
-    </div>
+    <div class="contant">
+        <div class="col-sm-6">
+            <label for="email">Email</label>
+            <h2 name="email"><?= $this->view->user[0]['email'] ?></h2>
+            <label for="cidade">Cidade</label>
+            <h2 name="cidade"><?= $this->view->user[0]['cidade'] ?></h2>
+            <label for="estado">Estado</label>
+            <h2 name="estado"><?= $this->view->user[0]['estado'] ?></h2>
+            <label for="cep">CEP</label>
+            <h2 name="cep"><?= $this->view->user[0]['cep'] ?></h2>
+        </div>
+        <div class="col-sm-6">
+            <?php for ($i = 0; $i < count($this->view->tel); $i++) { ?>
+            
+            <label>Telefone <?= $i + 1  ?></label>
+            <h2> <?= $this->view->tel[$i]['num_tel'] ?> </h2>
 
+            <?php } ?>
+        </div>
+    </div>
     <a href="/"><button type="button" class="btn btn-secondary btn-lg btn-block">Voltar</button></a>
 </div>

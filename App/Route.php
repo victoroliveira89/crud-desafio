@@ -25,6 +25,12 @@ class Route extends Bootstrap {
             'action' => 'registrar'
         );
 
+        $routes['busca'] = array(
+            'route' => '/busca',
+            'controller' => 'indexController',
+            'action' => 'busca'
+        );
+
         $routes['consulta'] = array(
             'route' => '/consulta',
             'controller' => 'indexController',
