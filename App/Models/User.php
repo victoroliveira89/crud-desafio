@@ -21,7 +21,7 @@ class User extends Model {
     }
 
     public function salvar() {
-        $query = "INSERT INTO usuarios($nome, $email, $cidade, $estado, $cep)VALUES(:nome, :email, :cidade, :estado, :cep)";
+        $query = "INSERT INTO usuarios(nome, email, cidade, estado, cep) VALUES (:nome, :email, :cidade, :estado, :cep)";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':nome', $this->__get('nome'));
         $stmt->bindValue(':email', $this->__get('email'));
@@ -33,8 +33,26 @@ class User extends Model {
         return $this;
     }
 
+    public function validarRegistro() {
+        $valido = true;
+
+        return $valido;
+    }
+
+    public function getUserValid() {
+        $query = "SELECT nome, email FROM usuarios WHERE email = :email";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':email', $this->__get('email'));
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function getUser() {
-        $query = "SELECT id, nome, email, cidade, estado, cep FROM usuarios";
-        return $this->db->query($query)->fetchAll();
+        $query = "SELECT * FROM usuarios";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

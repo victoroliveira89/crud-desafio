@@ -13,6 +13,14 @@ class IndexController extends Action {
     }
 
     public function cadastrar() {
+        $this->view->erroCadastro = false;
+        $this->view->user = array (
+            'nome' => '',
+            'email' => '',
+            'cidade' => '',
+            'estado' => '',
+            'cep' => '',
+        );
         $this->render('cadastrar', 'layout1');
     }
 
@@ -24,6 +32,28 @@ class IndexController extends Action {
         $usuario->__set('estado', $_POST['estado']);
         $usuario->__set('cep', $_POST['cep']);
 
-        $usuario->salvar();
+        if ($usuario->validarRegistro() && count($usuario->getUserValid()) == 0) {
+                $usuario->salvar();
+                $this->render('registrar', 'layout1');
+        } else {
+            $this->view->user = array (
+                'nome' => $_POST['nome'],
+                'email' => $_POST['email'],
+                'cidade' => $_POST['cidade'],
+                'estado' => $_POST['estado'],
+                'cep' => $_POST['cep'],
+            );
+            $this->view->erroCadastro = true;
+            $this->render('cadastrar', 'layout1');
+        }
+    }
+
+    public function consulta() {
+        $usuario = Container::getModel('User');
+        $this->view->user = $usuario->getUser();
+        echo '<pre>';
+        print_r($this->view->user);
+        echo '</pre>';
+        $this->render('consulta', 'layout1');
     }
 }

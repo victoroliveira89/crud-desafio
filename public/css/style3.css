@@ -1,0 +1,42 @@
+body {
+    background-color: rgb(80, 175, 49);
+}
+
+label {
+    width: 100%;
+    text-align: center;
+}
+
+img {
+    width: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+}
+
+h1 {
+    margin-bottom: 1em;
+    font-size: 2.5vw;
+    text-align: center;
+}
+
+button {
+    margin-top: 2em;
+}
+
+h2 {
+    font-size: 1.8vw;
+    text-align: center;
+}
+
+.container {
+    background-color: rgb(228, 228, 228);
+    margin-top: 1em;
+    border-radius: 15px;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+}
